@@ -1,8 +1,6 @@
 ﻿using CursoDapper.Models;
 using Dapper;
 using MySql.Data.MySqlClient;
-using System.Data.SqlClient;
-using System.Runtime.InteropServices;
 
 namespace CursoDapper.Services.LivroServices
 {
@@ -19,7 +17,7 @@ namespace CursoDapper.Services.LivroServices
 
         }
 
-        public async Task<IEnumerable<Livro>> CreateLivro(Livro livro)
+        public async Task<IEnumerable<Livro>> CreateBook(Livro livro)
         {
             using (var con = new MySqlConnection(getConnection))
             {
@@ -29,7 +27,7 @@ namespace CursoDapper.Services.LivroServices
             }
         }
 
-        public async  Task<IEnumerable<Livro>> DeleteLivro(int id)
+        public async  Task<IEnumerable<Livro>> DeleteBook(int id)
         {
             using (var con =new MySqlConnection(getConnection))
             {
@@ -39,7 +37,7 @@ namespace CursoDapper.Services.LivroServices
             }
         }
 
-        public async Task<IEnumerable<Livro>> GetAllLivros()
+        public async Task<IEnumerable<Livro>> GetAllBooks() 
         {
             using (var con = new MySqlConnection(getConnection))
             {
@@ -49,7 +47,7 @@ namespace CursoDapper.Services.LivroServices
             }
         }
 
-        public async Task<Livro> GetLivroById(int id)
+        public async Task<Livro> GetBookById(int id)
         {
             using (var con = new MySqlConnection(getConnection))
             {
@@ -58,7 +56,7 @@ namespace CursoDapper.Services.LivroServices
             }
         }
 
-        public async Task<IEnumerable<Livro>> UpdateLivro(int id, Livro livro)
+        public async Task<IEnumerable<Livro>> UpdateBook(int id, Livro livro)
         {
             using (var con = new MySqlConnection(getConnection))
             {

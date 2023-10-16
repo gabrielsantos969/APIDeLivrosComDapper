@@ -1,8 +1,6 @@
 ﻿using CursoDapper.Models;
 using CursoDapper.Services.LivroServices;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Org.BouncyCastle.Asn1.Cms;
 
 namespace CursoDapper.Controllers
 {
@@ -23,7 +21,7 @@ namespace CursoDapper.Controllers
         public async Task<ActionResult<IEnumerable<Livro>>> GetAllLivros()
         {
 
-            IEnumerable<Livro> livros = await _livroInterface.GetAllLivros();
+            IEnumerable<Livro> livros = await _livroInterface.GetAllBooks();
 
             if (!livros.Any())
             {
@@ -36,7 +34,7 @@ namespace CursoDapper.Controllers
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Livro>> GetLivroById(int id)
         {
-            Livro livro = await _livroInterface.GetLivroById(id);
+            Livro livro = await _livroInterface.GetBookById(id);
 
             if (livro == null)
             {
@@ -49,7 +47,7 @@ namespace CursoDapper.Controllers
         [HttpPost]
         public async Task<ActionResult<IEnumerable<Livro>>> CreateLivro(Livro livro)
         {
-            IEnumerable<Livro> livros = await _livroInterface.CreateLivro(livro);
+            IEnumerable<Livro> livros = await _livroInterface.CreateBook(livro);
             return Ok(livros);
 
         }
@@ -57,14 +55,14 @@ namespace CursoDapper.Controllers
         [HttpPut("{id:int}")]
         public async Task<ActionResult<IEnumerable<Livro>>> UpdateLivro(int id, Livro livro)
         {
-            Livro registro = await _livroInterface.GetLivroById(id);
+            Livro registro = await _livroInterface.GetBookById(id);
             
             if (registro == null)
             {
                 return NotFound("Livro não encontrado...");
             }
 
-            IEnumerable<Livro> livros = await _livroInterface.UpdateLivro(id, livro);    
+            IEnumerable<Livro> livros = await _livroInterface.UpdateBook(id, livro);    
             return Ok(livros);
 
         }
@@ -72,14 +70,14 @@ namespace CursoDapper.Controllers
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<IEnumerable<Livro>>> DeleteLivro(int id)
         {
-            Livro registro = await _livroInterface.GetLivroById(id);
+            Livro registro = await _livroInterface.GetBookById(id);
 
             if(registro == null)
             {
                 return NotFound("Livro não encontrado...");
             }
 
-            IEnumerable<Livro> livros = await _livroInterface.DeleteLivro(id);
+            IEnumerable<Livro> livros = await _livroInterface.DeleteBook(id);
             return Ok(livros);
         }
     }
