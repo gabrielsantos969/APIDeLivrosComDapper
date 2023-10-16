@@ -17,7 +17,7 @@ namespace CursoDapper.Controllers
             _livroInterface = livroInterface;
         }
 
-        [HttpGet]
+        [HttpGet("AllBooks")]
         public async Task<ActionResult<IEnumerable<Livro>>> GetAllLivros()
         {
 
@@ -31,7 +31,7 @@ namespace CursoDapper.Controllers
             return Ok(livros);
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("BookById/id={id:int}")]
         public async Task<ActionResult<Livro>> GetLivroById(int id)
         {
             Livro livro = await _livroInterface.GetBookById(id);
@@ -44,7 +44,7 @@ namespace CursoDapper.Controllers
             return Ok(livro);
         }
 
-        [HttpPost]
+        [HttpPost("CreateBook")]
         public async Task<ActionResult<IEnumerable<Livro>>> CreateLivro(Livro livro)
         {
             IEnumerable<Livro> livros = await _livroInterface.CreateBook(livro);
@@ -52,7 +52,7 @@ namespace CursoDapper.Controllers
 
         }
 
-        [HttpPut("{id:int}")]
+        [HttpPut("UpdateBook/id={id:int}")]
         public async Task<ActionResult<IEnumerable<Livro>>> UpdateLivro(int id, Livro livro)
         {
             Livro registro = await _livroInterface.GetBookById(id);
@@ -67,7 +67,7 @@ namespace CursoDapper.Controllers
 
         }
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete("DeleteBook/id={id:int}")]
         public async Task<ActionResult<IEnumerable<Livro>>> DeleteLivro(int id)
         {
             Livro registro = await _livroInterface.GetBookById(id);
